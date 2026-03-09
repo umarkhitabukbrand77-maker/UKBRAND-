@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK BRAND - Fresh Finds Best Prices</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #000;
+            --accent: #C17A4C;
+            --light: #ffffff;
+            --gray: #f5f5f5;
+            --dark-gray: #333333;
+            --border: #e0e0e0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.15);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1 { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; line-height: 1.1; }
+        h2 { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 1.5rem; }
+        h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 600; }
+        p { font-size: 1rem; line-height: 1.6; color: #666; }
+
+        .btn { font-family: 'Syne', sans-serif; padding: 12px 32px; font-size: 1rem; font-weight: 600; border: none; cursor: pointer; border-radius: 0; text-transform: uppercase; letter-spacing: 1px; transition: all var(--transition); position: relative; overflow: hidden; }
+        .btn-primary { background: var(--accent); color: white; box-shadow: var(--shadow); }
+        .btn-primary:hover { background: #a86640; transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+        nav { position: sticky; top: 0; background: var(--light); border-bottom: 1px solid var(--border); z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; gap: 2rem; }
+        .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--primary); }
+        .logo img { height: 50px; width: 50px; object-fit: contain; }
+        .logo-text { font-family: 'Space Mono', monospace; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; flex: 1; justify-content: center; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 500; font-size: 0.95rem; position: relative; transition: color var(--transition); text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width var(--transition); }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-right { display: flex; gap: 2rem; align-items: center; }
+        .cart-icon { position: relative; font-size: 1.5rem; cursor: pointer; transition: all var(--transition); color: var(--primary); }
+        .cart-icon:hover { color: var(--accent); transform: scale(1.1); }
+        .cart-count { position: absolute; top: -8px; right: -8px; background: var(--accent); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .menu-toggle span { width: 25px; height: 3px; background: var(--primary); border-radius: 2px; transition: all var(--transition); }
+
+        .hero { position: relative; height: 100vh; min-height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--light); }
+        .hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; background-image: url('https://i.ibb.co/VyGCqd0/IMG-20260305-WA0027-1.jpg'); z-index: 1; animation: zoomIn 10s ease-out forwards; }
+        @keyframes zoomIn { from { transform: scale(1.1); } to { transform: scale(1); } }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 2; }
+        .hero-content { position: relative; z-index: 3; text-align: center; color: white; max-width: 700px; animation: fadeInUp 1s ease-out 0.3s both; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-content h1 { font-size: 4rem; margin-bottom: 1rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
+        .hero-tagline { font-size: 1.5rem; margin-bottom: 2.5rem; font-weight: 500; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); }
+        .hero-btn { animation: fadeInUp 1s ease-out 0.6s both; }
+
+        .products-section { padding: 80px 0; background: var(--light); }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { position: relative; display: inline-block; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--accent); }
+        .products-carousel { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        .products-carousel::-webkit-scrollbar { height: 8px; }
+        .products-carousel::-webkit-scrollbar-track { background: var(--gray); border-radius: 10px; }
+        .products-carousel::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+        .product-card { flex: 0 0 280px; background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); transition: all var(--transition); cursor: pointer; display: flex; flex-direction: column; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .product-image { position: relative; overflow: hidden; height: 260px; background: var(--gray); display: flex; align-items: center; justify-content: center; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease-out; }
+        .product-card:hover .product-image img { transform: scale(1.08); }
+        .product-badge { position: absolute; top: 12px; right: 12px; background: var(--accent); color: white; padding: 6px 12px; font-size: 0.75rem; font-weight: 700; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .product-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .product-name { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--primary); }
+        .product-rating { display: flex; gap: 0.3rem; margin-bottom: 1rem; font-size: 0.9rem; }
+        .star { color: #ffc107; }
+        .star.empty { color: #e0e0e0; }
+        .product-price { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
+        .add-to-cart-btn { margin-top: auto; width: 100%; padding: 12px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; border: 2px solid var(--primary); background: transparent; color: var(--primary); cursor: pointer; border-radius: 0; transition: all var(--transition); font-family: 'Syne', sans-serif; }
+        .add-to-cart-btn:hover { background: var(--primary); color: white; }
+        .add-to-cart-btn.added { background: var(--accent); border-color: var(--accent); color: white; }
+
+        .cart-drawer { position: fixed; right: -400px; top: 0; width: 400px; height: 100vh; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.2); z-index: 1000; display: flex; flex-direction: column; transition: right var(--transition); overflow-y: auto; }
+        .cart-drawer.active { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid var(--border); background: var(--primary); color: white; }
+        .cart-header h3 { color: white; margin: 0; }
+        .cart-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: white; transition: all var(--transition); }
+        .cart-close:hover { transform: rotate(90deg); }
+        .cart-items { flex: 1; padding: 20px; overflow-y: auto; }
+        .cart-empty { text-align: center; padding: 40px 20px; color: #999; }
+        .cart-empty-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
+        .cart-item { display: flex; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); animation: slideInLeft 0.3s ease-out; }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .cart-item-image { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; background: var(--gray); }
+        .cart-item-details { flex: 1; }
+        .cart-item-name { font-weight: 600; margin-bottom: 0.5rem; color: var(--primary); }
+        .cart-item-price { color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
+        .cart-item-quantity { display: flex; gap: 8px; align-items: center; width: fit-content; }
+        .qty-btn { width: 24px; height: 24px; border: 1px solid var(--border); background: white; cursor: pointer; border-radius: 0; font-size: 0.8rem; transition: all var(--transition); }
+        .qty-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        .qty-display { width: 30px; text-align: center; font-weight: 600; }
+        .cart-remove { color: var(--accent); cursor: pointer; font-size: 0.9rem; transition: all var(--transition); margin-top: 0.5rem; }
+        .cart-remove:hover { text-decoration: underline; }
+        .cart-footer { padding: 20px; border-top: 2px solid var(--border); background: var(--gray); }
+        .cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 1.2rem; font-weight: 700; }
+        .cart-total-price { color: var(--accent); }
+
+        .checkout-form { background: white; padding: 20px; border-radius: 8px; }
+        .checkout-form h4 { margin-bottom: 15px; font-family: 'Syne', sans-serif; font-size: 1.1rem; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem; color: var(--primary); }
+        .form-group input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.9rem; font-family: 'Inter', sans-serif; transition: all var(--transition); }
+        .form-group input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(193,122,76,0.1); }
+
+        .send-order-btn { width: 100%; padding: 14px; background: #25d366; color: white; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; transition: all var(--transition); font-family: 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .send-order-btn:hover { background: #1da851; transform: translateY(-2px); box-shadow: var(--shadow); }
+        .send-order-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        .floating-whatsapp { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: white; cursor: pointer; box-shadow: var(--shadow-lg); transition: all var(--transition); text-decoration: none; z-index: 50; animation: slideUpIn 0.6s ease-out 0.5s both; }
+        @keyframes slideUpIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .floating-whatsapp:hover { transform: scale(1.1); box-shadow: 0 8px 20px rgba(37,211,102,0.4); }
+
+        footer { background: var(--primary); color: white; padding: 60px 0 20px; margin-top: 80px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-section h4 { font-family: 'Syne', sans-serif; margin-bottom: 1rem; font-size: 1.1rem; }
+        .footer-section p { color: #ccc; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .footer-contact { display: flex; align-items: center; gap: 10px; color: #ccc; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .footer-contact i { color: var(--accent); width: 20px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; color: #999; font-size: 0.9rem; }
+
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all var(--transition); z-index: 2000; }
+        .modal.active { opacity: 1; visibility: visible; }
+        .modal-content { background: white; padding: 40px; border-radius: 8px; max-width: 500px; text-align: center; animation: scaleIn 0.3s ease-out; }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .modal-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .modal-message { color: #666; margin-bottom: 1.5rem; line-height: 1.6; }
+        .modal-btn { padding: 12px 32px; background: var(--accent); color: white; border: none; cursor: pointer; border-radius: 0; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all var(--transition); font-family: 'Syne', sans-serif; }
+        .modal-btn:hover { background: #a86640; }
+
+        .toast { position: fixed; bottom: 100px; right: 30px; background: var(--primary); color: white; padding: 16px 24px; border-radius: 4px; box-shadow: var(--shadow-lg); opacity: 0; transform: translateY(20px); transition: all var(--transition); z-index: 999; font-size: 0.9rem; }
+        .toast.show { opacity: 1; transform: translateY(0); }
+
+        .loading { display: inline-block; width: 18px; height: 18px; border: 3px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: flex; }
+            .product-card { flex: 0 0 200px; }
+            .cart-drawer { width: 100%; right: -100%; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-tagline { font-size: 1.2rem; }
+        }
+        @media (max-width: 480px) {
+            .product-card { flex: 0 0 160px; }
+            .product-image { height: 180px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="navbar">
+                <a href="#" class="logo">
+                    <img src="https://i.ibb.co/60Rzwpgr/IMG-20260305-WA0000.jpg" alt="UK BRAND Logo">
+                    <div class="logo-text">UK BRAND</div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">New Arrivals</a></li>
+                    <li><a href="#products">Best Sellers</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                </ul>
+                <div class="nav-right">
+                    <div class="cart-icon" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                    <div class="menu-toggle" id="menuToggle">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Wear Stylish and Comfortable Sandals</h1>
+            <p class="hero-tagline">Fresh Finds Best Prices</p>
+            <button class="btn btn-primary hero-btn" id="shopNowBtn">Shop Now</button>
+        </div>
+    </section>
+
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Collection</h2>
+            </div>
+            <div class="products-carousel" id="productsCarousel"></div>
+        </div>
+    </section>
+
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <div class="cart-empty-icon"><i class="fas fa-shopping-bag"></i></div>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="cart-total-price" id="cartTotalPrice">Rs. 0</span>
+            </div>
+            <div class="checkout-form">
+                <h4>📦 Order Details</h4>
+                <div class="form-group">
+                    <label for="customerName">Full Name *</label>
+                    <input type="text" id="customerName" placeholder="Apna naam likhein">
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number *</label>
+                    <input type="tel" id="customerPhone" placeholder="03XXXXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Address *</label>
+                    <input type="text" id="customerAddress" placeholder="Ghar ka pata">
+                </div>
+                <div class="form-group">
+                    <label for="customerCity">City *</label>
+                    <input type="text" id="customerCity" placeholder="Sheher ka naam">
+                </div>
+                <!-- ✅ FIXED: Direct WhatsApp - No server needed, 100% works -->
+                <button class="send-order-btn" id="sendOrderBtn">
+                    <i class="fab fa-whatsapp"></i> Send Order on WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-icon" id="modalIcon"></div>
+            <p class="modal-message" id="modalMessage"></p>
+            <button class="modal-btn" id="modalBtn">Close</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <a href="https://wa.me/923038457357" class="floating-whatsapp" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>UK BRAND</h4>
+                    <p>Fresh Finds Best Prices - Your ultimate destination for stylish and comfortable sandals.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact"><i class="fas fa-map-marker-alt"></i><span>Karachi, Pakistan</span></div>
+                    <div class="footer-contact"><i class="fas fa-phone"></i><span>+92 303 8457357</span></div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="#home" style="color:#ccc;text-decoration:none;">Home</a></p>
+                    <p><a href="#products" style="color:#ccc;text-decoration:none;">Shop</a></p>
+                    <p><a href="#footer" style="color:#ccc;text-decoration:none;">Contact</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 UK BRAND. All rights reserved. | Fresh Finds Best Prices</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ✅ YOUR WHATSAPP NUMBER (with country code, no + or spaces)
+        const WHATSAPP_NUMBER = '923038457357';
+
+        const products = [
+            { id: 1,  name: 'Premium Leather Sandal',    price: 6499, image: 'https://i.ibb.co/VyGCqd0/IMG-20260305-WA0027-1.jpg',      rating: 5, badge: 'New' },
+            { id: 2,  name: 'Classic Comfort Sandal',    price: 6499, image: 'https://i.ibb.co/RGGRbtLy/IMG-20260305-WA0025-1.jpg',      rating: 4, badge: 'Hot' },
+            { id: 3,  name: 'Urban Style Sandal',        price: 6499, image: 'https://i.ibb.co/VpQzkbP6/IMG-20260305-WA0023.jpg',        rating: 5, badge: 'Best' },
+            { id: 4,  name: 'Casual Sandal',             price: 5999, image: 'https://i.ibb.co/RTV7J32V/IMG-20260305-WA0019.jpg',        rating: 4, badge: '' },
+            { id: 5,  name: 'Everyday Comfort Fit',      price: 5999, image: 'https://i.ibb.co/dwGSYmK8/IMG-20260305-WA0020.jpg',        rating: 5, badge: '' },
+            { id: 6,  name: 'Elite Casual Sandal',       price: 6499, image: 'https://i.ibb.co/v4pdgyf3/IMG-20260305-WA0016.jpg',        rating: 5, badge: 'Sale' },
+            { id: 7,  name: 'Summer Sandal Plus',        price: 5999, image: 'https://i.ibb.co/0yW79qLX/IMG-20260305-WA0024.jpg',        rating: 4, badge: '' },
+            { id: 8,  name: 'Trendy Slide Sandal',       price: 4499, image: 'https://i.ibb.co/0V6XcjP2/IMG-20260305-WA0014.jpg',        rating: 4, badge: '' },
+            { id: 9,  name: 'Sleek Modern Sandal',       price: 4499, image: 'https://i.ibb.co/SXc8fC47/IMG-20260305-WA0012.jpg',        rating: 5, badge: '' },
+            { id: 10, name: 'Budget Friendly Sandal',    price: 3499, image: 'https://i.ibb.co/8n7WcqnM/IMG-20260305-WA0009.jpg',        rating: 3, badge: 'Budget' },
+            { id: 11, name: 'Premium Leather Sandal',    price: 6499, image: 'https://i.ibb.co/LD0sYDPL/IMG-20260305-WA0008.jpg',        rating: 5, badge: 'Premium' },
+            { id: 12, name: 'Fashion Forward Sandal',    price: 6499, image: 'https://i.ibb.co/V8LRncG/IMG-20260305-WA0006.jpg',         rating: 5, badge: 'New' },
+            { id: 13, name: 'Affordable Sandal Style',   price: 3499, image: 'https://i.ibb.co/GQ9F2JWD/IMG-20260305-WA0004.jpg',        rating: 4, badge: '' },
+            { id: 14, name: 'Comfy Casual Sandal',       price: 3499, image: 'https://i.ibb.co/Z18Ht5qX/IMG-20260305-WA0002.jpg',        rating: 4, badge: '' }
+        ];
+
+        let cart = [];
+
+        const cartBtn       = document.getElementById('cartBtn');
+        const cartDrawer    = document.getElementById('cartDrawer');
+        const cartClose     = document.getElementById('cartClose');
+        const cartCount     = document.getElementById('cartCount');
+        const cartItems     = document.getElementById('cartItems');
+        const cartTotalPrice= document.getElementById('cartTotalPrice');
+        const productsCarousel = document.getElementById('productsCarousel');
+        const shopNowBtn    = document.getElementById('shopNowBtn');
+        const sendOrderBtn  = document.getElementById('sendOrderBtn');
+        const modal         = document.getElementById('modal');
+        const modalBtn      = document.getElementById('modalBtn');
+        const toast         = document.getElementById('toast');
+
+        function init() {
+            renderProducts();
+            updateCart();
+            setupEventListeners();
+        }
+
+        function renderProducts() {
+            productsCarousel.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${p.image}" alt="${p.name}" loading="lazy">
+                        ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${p.name}</h3>
+                        <div class="product-rating">
+                            ${[1,2,3,4,5].map(i => `<span class="star ${i <= p.rating ? '' : 'empty'}"><i class="fas fa-star"></i></span>`).join('')}
+                        </div>
+                        <div class="product-price">Rs. ${p.price.toLocaleString()}</div>
+                        <button class="add-to-cart-btn" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-image="${p.image}">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                btn.addEventListener('click', addToCart);
+            });
+        }
+
+        function addToCart(e) {
+            const btn = e.target;
+            const id    = parseInt(btn.dataset.id);
+            const name  = btn.dataset.name;
+            const price = parseInt(btn.dataset.price);
+            const image = btn.dataset.image;
+
+            const existing = cart.find(i => i.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ id, name, price, image, quantity: 1 });
+            }
+
+            updateCart();
+            showToast(`✅ ${name} cart mein add ho gaya!`);
+            btn.classList.add('added');
+            btn.textContent = 'Added ✓';
+            setTimeout(() => { btn.classList.remove('added'); btn.textContent = 'Add to Cart'; }, 2000);
+        }
+
+        function updateCart() {
+            const totalItems = cart.reduce((s, i) => s + i.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="cart-empty">
+                        <div class="cart-empty-icon"><i class="fas fa-shopping-bag"></i></div>
+                        <p>Cart khali hai</p>
+                    </div>`;
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">Rs. ${item.price.toLocaleString()}</div>
+                            <div class="cart-item-quantity">
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+                                <div class="qty-display">${item.quantity}</div>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                            <div class="cart-remove" onclick="removeFromCart(${item.id})">Remove</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+            cartTotalPrice.textContent = `Rs. ${total.toLocaleString()}`;
+        }
+
+        function updateQuantity(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity = Math.max(1, item.quantity + change);
+                updateCart();
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCart();
+            showToast('Item hata diya gaya');
+        }
+
+        // ✅ FIXED sendOrder — 100% WhatsApp based, no server needed
+        function sendOrder() {
+            const name    = document.getElementById('customerName').value.trim();
+            const phone   = document.getElementById('customerPhone').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
+            const city    = document.getElementById('customerCity').value.trim();
+
+            if (!name || !phone || !address || !city) {
+                showToast('⚠️ Sab fields bharein!');
+                return;
+            }
+
+            if (cart.length === 0) {
+                showToast('⚠️ Cart khali hai!');
+                return;
+            }
+
+            const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+            const itemLines = cart.map(i =>
+                `• ${i.name} x${i.quantity} = Rs. ${(i.price * i.quantity).toLocaleString()}`
+            ).join('\n');
+
+            const message =
+`🛍️ *NEW ORDER - UK BRAND*
+━━━━━━━━━━━━━━━━━
+👤 *Customer:* ${name}
+📞 *Phone:* ${phone}
+📍 *Address:* ${address}, ${city}
+━━━━━━━━━━━━━━━━━
+🧾 *Items:*
+${itemLines}
+━━━━━━━━━━━━━━━━━
+💰 *Total: Rs. ${total.toLocaleString()}*`;
+
+            const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(waURL, '_blank');
+
+            // Clear cart and show success
+            showModal('success', '✅ Order WhatsApp par bhej diya!', 'WhatsApp khul gaya — bas "Send" dabayein. Shukriya!');
+            cart = [];
+            updateCart();
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('customerAddress').value = '';
+            document.getElementById('customerCity').value = '';
+            cartDrawer.classList.remove('active');
+        }
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function showModal(type, title, message) {
+            const icon = document.getElementById('modalIcon');
+            const msg  = document.getElementById('modalMessage');
+            icon.innerHTML = type === 'success'
+                ? '<i class="fas fa-check-circle" style="color:#C17A4C"></i>'
+                : '<i class="fas fa-exclamation-circle" style="color:#ff6b6b"></i>';
+            msg.innerHTML = `<strong>${title}</strong><br><br>${message}`;
+            modal.classList.add('active');
+        }
+
+        function setupEventListeners() {
+            cartBtn.addEventListener('click', () => cartDrawer.classList.add('active'));
+            cartClose.addEventListener('click', () => cartDrawer.classList.remove('active'));
+            modalBtn.addEventListener('click', () => modal.classList.remove('active'));
+            modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });
+            shopNowBtn.addEventListener('click', () => document.getElementById('products').scrollIntoView({ behavior: 'smooth' }));
+            sendOrderBtn.addEventListener('click', sendOrder);
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
